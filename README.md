@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/Minlessika/lightweight-db/blob/main/LICENSE.txt)
 
 ## What does it do ?
-Lightweight DB allows you to run PostgreSQL, Oracle, MySQL, MS SQL Server... databases for fast purpose uses. It's very suitable for unit and integration tests.
+Lightweight DB allows you to run PostgreSQL, Oracle, MySQL, MS SQL Server... databases for fast use purposes. It's very suitable for unit and integration Testing.
 
 All currently supported databases are :
 
@@ -49,6 +49,38 @@ public static void main(String... args) throws Exception {
     }
 }
 ``` 
+
+## Using with Maven
+If you're using Maven, you should add this to your <code>pom.xml</code> dependencies:
+
+```xml
+<dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+    <version>1.4.200</version>
+    <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>com.minlessika.incubator</groupId>
+    <artifactId>lightweight-db</artifactId>
+    <version>0.1.0</version>
+    <scope>test</scope>
+</dependency>
+``` 
+
+## Using with Gradle
+If you're using Maven, you should add this to your <code>build.gradle</code> file:
+
+```gradle
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    test group: 'com.h2database', name: 'h2', version: '1.4.200'
+    test group: 'org.minlessika.incubator', name: 'lightweight-db', version: '0.1.0'
+}
+```
 
 ## How to contribute
 Fork repository, make changes, send us a pull request. We will review
