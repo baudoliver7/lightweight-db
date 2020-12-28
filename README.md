@@ -6,15 +6,49 @@
 Lightweight DB allows you to run PostgreSQL, Oracle, MySQL, MS SQL Server... databases for fast purpose uses. It's very suitable for unit and integration tests.
 
 All currently supported databases are :
-** PostgreSQL
-** Oracle
-** MySQL
-** MS SQL Server
-** DB2
-** Derby
-** HSQLDB
-** Ignite
-** H2
+
+* PostgreSQL
+* Oracle
+* MySQL
+* MS SQL Server
+* DB2
+* Derby
+* HSQLDB
+* Ignite
+* H2
+
+## How does it work ?
+This is how we create an embedded PostgreSQL database and do common SQL tasks on it.
+
+```java
+public static void main(String... args) throws Exception {
+    final DataSource source = new EmbeddedPostgreSQLDataSource();
+    try (
+        Connection connection = source.getConnection();
+        Statement s = connection.createStatement()
+    ) {
+        s.execute(
+            String.join(
+                " ",
+                "CREATE TABLE accounting_chart (",
+                "   id BIGSERIAL NOT NULL,",
+                "   type VARCHAR(25) NOT NULL,",
+                "   state VARCHAR(10) NOT NULL,",
+                "   version VARCHAR(10) NOT NULL,",
+                "   CONSTRAINT accounting_chart_pkey PRIMARY KEY (id)",
+                ")"
+            )
+        );
+        s.execute(
+            String.join(
+                " ",
+                "INSERT INTO accounting_chart (type, state, version)",
+                "VALUES ('SYSCOHADA', 'ACTIVE', '2018');"
+            )
+        );
+    }
+}
+``` 
 
 ## How to contribute
 Fork repository, make changes, send us a pull request. We will review
