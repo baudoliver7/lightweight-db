@@ -18,36 +18,43 @@ All currently supported databases are :
 * H2
 
 ## How does it work ?
-This is how we create an embedded PostgreSQL database and do common SQL tasks on it.
+This is how you can create an embedded PostgreSQL database and do common SQL tasks on it.
 
 ```java
-public static void main(String... args) throws Exception {
-    final DataSource source = new EmbeddedPostgreSQLDataSource();
-    try (
-        Connection connection = source.getConnection();
-        Statement s = connection.createStatement()
-    ) {
-        s.execute(
-            String.join(
-                " ",
-                "CREATE TABLE accounting_chart (",
-                "   id BIGSERIAL NOT NULL,",
-                "   type VARCHAR(25) NOT NULL,",
-                "   state VARCHAR(10) NOT NULL,",
-                "   version VARCHAR(10) NOT NULL,",
-                "   CONSTRAINT accounting_chart_pkey PRIMARY KEY (id)",
-                ")"
-            )
-        );
-        s.execute(
-            String.join(
-                " ",
-                "INSERT INTO accounting_chart (type, state, version)",
-                "VALUES ('SYSCOHADA', 'ACTIVE', '2018');"
-            )
-        );
-    }
+final DataSource source = new EmbeddedPostgreSQLDataSource();
+try (
+    Connection connection = source.getConnection();
+    Statement s = connection.createStatement()
+) {
+    s.execute(
+        String.join(
+            " ",
+            "CREATE TABLE accounting_chart (",
+            "   id BIGSERIAL NOT NULL,",
+            "   type VARCHAR(25) NOT NULL,",
+            "   state VARCHAR(10) NOT NULL,",
+            "   version VARCHAR(10) NOT NULL,",
+            "   CONSTRAINT accounting_chart_pkey PRIMARY KEY (id)",
+            ")"
+        )
+    );
+    s.execute(
+        String.join(
+            " ",
+            "INSERT INTO accounting_chart (type, state, version)",
+            "VALUES ('SYSCOHADA', 'ACTIVE', '2018');"
+        )
+    );
 }
+``` 
+You can use [Liquibase](https://www.liquibase.org/) to execute theses operations like this (provided that <code>liquibase</code> folder is at the root of folder <code>resources</code>) :
+
+```java
+final DataSource source =  
+    new LiquibaseDataSource(
+        new EmbeddedPostgreSQLDataSource(), 
+        "liquibase/db.changelog-master-test.xml"
+    );
 ``` 
 
 ## Using with Maven
