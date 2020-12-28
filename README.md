@@ -69,7 +69,7 @@ If you're using Maven, you should add this to your <code>pom.xml</code> dependen
 ``` 
 
 ## Using with Gradle
-If you're using Maven, you should add this to your <code>build.gradle</code> file:
+If you're using Gradle, you should add this to your <code>build.gradle</code> file:
 
 ```gradle
 repositories {
