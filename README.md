@@ -17,7 +17,7 @@ All currently supported databases are :
 * Ignite
 * H2
 
-## What does it work ?
+## How does it work ?
 This is how we create an embedded PostgreSQL database and do common SQL tasks on it.
 
 ```java
