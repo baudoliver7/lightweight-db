@@ -84,8 +84,8 @@ repositories {
 }
 
 dependencies {
-    test group: 'com.h2database', name: 'h2', version: '1.4.200'
-    test group: 'com.minlessika.incubator', name: 'lightweight-db', version: '0.1.0'
+    testImplementation 'com.h2database:h2:1.4.200'
+    testImplementation 'com.minlessika.incubator:lightweight-db:0.1.0'
 }
 ```
 
