@@ -29,7 +29,7 @@ package com.minlessika.lightweight.db;
  * @see <a href="http://h2database.com/html/features.html?highlight=Oracle%20Compatibility%20Mode&search=Oracle%20Compatibility%20Mode#firstFound">H2 - PostgreSQL Compatibility Mode</a>
  * @since 0.1
  */
-public final class EmbeddedOracleDataSource extends EmbeddedDataSource {
+public final class EmbeddedOracleDataSource extends DataSourceWrap {
 
     /**
      * Mode.
@@ -40,7 +40,7 @@ public final class EmbeddedOracleDataSource extends EmbeddedDataSource {
      * Ctor.
      */
     public EmbeddedOracleDataSource() {
-        super(EmbeddedOracleDataSource.MODE);
+        this(new RandomDatabaseName().value());
     }
 
     /**
@@ -48,6 +48,17 @@ public final class EmbeddedOracleDataSource extends EmbeddedDataSource {
      * @param dbname Database name
      */
     public EmbeddedOracleDataSource(final String dbname) {
-        super(dbname, EmbeddedOracleDataSource.MODE);
+        this(dbname, EmbeddedDataSource.DEFAULT_MAXIMUM_POOL_SIZE);
+    }
+
+    /**
+     * Ctor.
+     * @param dbname Database name
+     * @param maxpoolsize Max pool size
+     */
+    public EmbeddedOracleDataSource(final String dbname, final int maxpoolsize) {
+        super(
+            new EmbeddedDataSource(EmbeddedOracleDataSource.MODE, dbname, maxpoolsize)
+        );
     }
 }

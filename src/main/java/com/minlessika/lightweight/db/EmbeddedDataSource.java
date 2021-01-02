@@ -38,12 +38,12 @@ import javax.sql.DataSource;
  * @since 0.1
  * @checkstyle DesignForExtensionCheck (500 lines)
  */
-public abstract class EmbeddedDataSource extends DataSourceWrap {
+public final class EmbeddedDataSource extends DataSourceWrap {
 
     /**
-     * Maximum pool size.
+     * Default maximum pool size.
      */
-    private static final int MAXIMUM_POOL_SIZE = 2;
+    public static final int DEFAULT_MAXIMUM_POOL_SIZE = 2;
 
     /**
      * Mode.
@@ -57,19 +57,12 @@ public abstract class EmbeddedDataSource extends DataSourceWrap {
 
     /**
      * Ctor.
-     * @param mode Mode
-     */
-    public EmbeddedDataSource(final String mode) {
-        this(generateDatabaseName(), mode);
-    }
-
-    /**
-     * Ctor.
      * @param dbname Database name
      * @param mode Mode
+     * @param maxpoolsize Max pool size
      */
-    public EmbeddedDataSource(final String dbname, final String mode) {
-        super(makeDataSource(dbname, mode));
+    public EmbeddedDataSource(final String dbname, final String mode, final int maxpoolsize) {
+        super(makeDataSource(dbname, mode, maxpoolsize));
         this.mode = mode;
     }
 
@@ -119,9 +112,14 @@ public abstract class EmbeddedDataSource extends DataSourceWrap {
      * Make data source.
      * @param dbname Database name
      * @param mode Mode
+     * @param maxpoolsize Max pool size
      * @return Data source
      */
-    private static DataSource makeDataSource(final String dbname, final String mode) {
+    private static DataSource makeDataSource(
+        final String dbname,
+        final String mode,
+        final int maxpoolsize
+    ) {
         final HikariConfig configdb = new HikariConfig();
         configdb.setJdbcUrl(
             String.format(
@@ -131,15 +129,7 @@ public abstract class EmbeddedDataSource extends DataSourceWrap {
             )
         );
         configdb.setDriverClassName("org.h2.Driver");
-        configdb.setMaximumPoolSize(EmbeddedDataSource.MAXIMUM_POOL_SIZE);
+        configdb.setMaximumPoolSize(maxpoolsize);
         return new HikariDataSource(configdb);
-    }
-
-    /**
-     * Generate database name.
-     * @return Name
-     */
-    private static String generateDatabaseName() {
-        return new RandomDatabaseName().value();
     }
 }

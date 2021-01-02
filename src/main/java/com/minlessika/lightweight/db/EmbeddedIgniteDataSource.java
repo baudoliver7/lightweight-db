@@ -29,7 +29,7 @@ package com.minlessika.lightweight.db;
  * @see <a href="http://h2database.com/html/features.html?highlight=Ignite%20Compatibility%20Mode&search=Ignite%20Compatibility%20Mode#firstFound">H2 - PostgreSQL Compatibility Mode</a>
  * @since 0.1
  */
-public final class EmbeddedIgniteDataSource extends EmbeddedDataSource {
+public final class EmbeddedIgniteDataSource extends DataSourceWrap {
 
     /**
      * Mode.
@@ -40,7 +40,7 @@ public final class EmbeddedIgniteDataSource extends EmbeddedDataSource {
      * Ctor.
      */
     public EmbeddedIgniteDataSource() {
-        super(EmbeddedIgniteDataSource.MODE);
+        this(new RandomDatabaseName().value());
     }
 
     /**
@@ -48,6 +48,17 @@ public final class EmbeddedIgniteDataSource extends EmbeddedDataSource {
      * @param dbname Database name
      */
     public EmbeddedIgniteDataSource(final String dbname) {
-        super(dbname, EmbeddedIgniteDataSource.MODE);
+        this(dbname, EmbeddedDataSource.DEFAULT_MAXIMUM_POOL_SIZE);
+    }
+
+    /**
+     * Ctor.
+     * @param dbname Database name
+     * @param maxpoolsize Max pool size
+     */
+    public EmbeddedIgniteDataSource(final String dbname, final int maxpoolsize) {
+        super(
+            new EmbeddedDataSource(EmbeddedIgniteDataSource.MODE, dbname, maxpoolsize)
+        );
     }
 }

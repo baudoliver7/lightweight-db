@@ -29,7 +29,7 @@ package com.minlessika.lightweight.db;
  * @see <a href="http://h2database.com/html/features.html?highlight=Derby%20Compatibility%20Mode&search=Derby%20Compatibility%20Mode#firstFound">H2 - PostgreSQL Compatibility Mode</a>
  * @since 0.1
  */
-public final class EmbeddedDerbyDataSource extends EmbeddedDataSource {
+public final class EmbeddedDerbyDataSource extends DataSourceWrap {
 
     /**
      * Mode.
@@ -40,7 +40,7 @@ public final class EmbeddedDerbyDataSource extends EmbeddedDataSource {
      * Ctor.
      */
     public EmbeddedDerbyDataSource() {
-        super(EmbeddedDerbyDataSource.MODE);
+        this(new RandomDatabaseName().value());
     }
 
     /**
@@ -48,6 +48,17 @@ public final class EmbeddedDerbyDataSource extends EmbeddedDataSource {
      * @param dbname Database name
      */
     public EmbeddedDerbyDataSource(final String dbname) {
-        super(dbname, EmbeddedDerbyDataSource.MODE);
+        this(dbname, EmbeddedDataSource.DEFAULT_MAXIMUM_POOL_SIZE);
+    }
+
+    /**
+     * Ctor.
+     * @param dbname Database name
+     * @param maxpoolsize Max pool size
+     */
+    public EmbeddedDerbyDataSource(final String dbname, final int maxpoolsize) {
+        super(
+            new EmbeddedDataSource(EmbeddedDerbyDataSource.MODE, dbname, maxpoolsize)
+        );
     }
 }

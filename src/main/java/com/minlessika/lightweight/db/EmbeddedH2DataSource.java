@@ -29,7 +29,7 @@ package com.minlessika.lightweight.db;
  * @see <a href="http://h2database.com/html/features.html?highlight=DB2%20Compatibility%20Mode&search=DB2%20Compatibility%20Mode#firstFound">H2 - PostgreSQL Compatibility Mode</a>
  * @since 0.1
  */
-public final class EmbeddedH2DataSource extends EmbeddedDataSource {
+public final class EmbeddedH2DataSource extends DataSourceWrap {
 
     /**
      * Mode.
@@ -40,7 +40,7 @@ public final class EmbeddedH2DataSource extends EmbeddedDataSource {
      * Ctor.
      */
     public EmbeddedH2DataSource() {
-        super(EmbeddedH2DataSource.MODE);
+        this(new RandomDatabaseName().value());
     }
 
     /**
@@ -48,6 +48,17 @@ public final class EmbeddedH2DataSource extends EmbeddedDataSource {
      * @param dbname Database name
      */
     public EmbeddedH2DataSource(final String dbname) {
-        super(dbname, EmbeddedH2DataSource.MODE);
+        this(dbname, EmbeddedDataSource.DEFAULT_MAXIMUM_POOL_SIZE);
+    }
+
+    /**
+     * Ctor.
+     * @param dbname Database name
+     * @param maxpoolsize Max pool size
+     */
+    public EmbeddedH2DataSource(final String dbname, final int maxpoolsize) {
+        super(
+            new EmbeddedDataSource(EmbeddedH2DataSource.MODE, dbname, maxpoolsize)
+        );
     }
 }

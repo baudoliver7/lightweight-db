@@ -30,7 +30,7 @@ package com.minlessika.lightweight.db;
  * @since 0.1
  * @checkstyle AbbreviationAsWordInNameCheck (100 lines)
  */
-public final class EmbeddedMSSQLServerDataSource extends EmbeddedDataSource {
+public final class EmbeddedMSSQLServerDataSource extends DataSourceWrap {
 
     /**
      * Mode.
@@ -41,7 +41,7 @@ public final class EmbeddedMSSQLServerDataSource extends EmbeddedDataSource {
      * Ctor.
      */
     public EmbeddedMSSQLServerDataSource() {
-        super(EmbeddedMSSQLServerDataSource.MODE);
+        this(new RandomDatabaseName().value());
     }
 
     /**
@@ -49,6 +49,17 @@ public final class EmbeddedMSSQLServerDataSource extends EmbeddedDataSource {
      * @param dbname Database name
      */
     public EmbeddedMSSQLServerDataSource(final String dbname) {
-        super(dbname, EmbeddedMSSQLServerDataSource.MODE);
+        this(dbname, EmbeddedDataSource.DEFAULT_MAXIMUM_POOL_SIZE);
+    }
+
+    /**
+     * Ctor.
+     * @param dbname Database name
+     * @param maxpoolsize Max pool size
+     */
+    public EmbeddedMSSQLServerDataSource(final String dbname, final int maxpoolsize) {
+        super(
+            new EmbeddedDataSource(EmbeddedMSSQLServerDataSource.MODE, dbname, maxpoolsize)
+        );
     }
 }
