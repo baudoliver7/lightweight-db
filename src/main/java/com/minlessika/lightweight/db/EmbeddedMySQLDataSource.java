@@ -49,7 +49,7 @@ public final class EmbeddedMySQLDataSource extends DataSourceWrap {
      * @param dbname Database name
      */
     public EmbeddedMySQLDataSource(final String dbname) {
-        this(dbname, EmbeddedDataSource.DEFAULT_MAXIMUM_POOL_SIZE);
+        this(dbname, EmbeddedDataSource.DEFAULT_MAX_POOL_SIZE);
     }
 
     /**
@@ -59,7 +59,7 @@ public final class EmbeddedMySQLDataSource extends DataSourceWrap {
      */
     public EmbeddedMySQLDataSource(final String dbname, final int maxpoolsize) {
         super(
-            new EmbeddedDataSource(EmbeddedMySQLDataSource.MODE, dbname, maxpoolsize)
+            new EmbeddedDataSource(dbname, EmbeddedMySQLDataSource.MODE, maxpoolsize)
         );
     }
 }

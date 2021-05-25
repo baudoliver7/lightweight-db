@@ -48,7 +48,7 @@ public final class EmbeddedOracleDataSource extends DataSourceWrap {
      * @param dbname Database name
      */
     public EmbeddedOracleDataSource(final String dbname) {
-        this(dbname, EmbeddedDataSource.DEFAULT_MAXIMUM_POOL_SIZE);
+        this(dbname, EmbeddedDataSource.DEFAULT_MAX_POOL_SIZE);
     }
 
     /**
@@ -58,7 +58,7 @@ public final class EmbeddedOracleDataSource extends DataSourceWrap {
      */
     public EmbeddedOracleDataSource(final String dbname, final int maxpoolsize) {
         super(
-            new EmbeddedDataSource(EmbeddedOracleDataSource.MODE, dbname, maxpoolsize)
+            new EmbeddedDataSource(dbname, EmbeddedOracleDataSource.MODE, maxpoolsize)
         );
     }
 }

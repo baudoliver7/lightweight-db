@@ -48,7 +48,7 @@ public final class EmbeddedH2DataSource extends DataSourceWrap {
      * @param dbname Database name
      */
     public EmbeddedH2DataSource(final String dbname) {
-        this(dbname, EmbeddedDataSource.DEFAULT_MAXIMUM_POOL_SIZE);
+        this(dbname, EmbeddedDataSource.DEFAULT_MAX_POOL_SIZE);
     }
 
     /**
@@ -58,7 +58,7 @@ public final class EmbeddedH2DataSource extends DataSourceWrap {
      */
     public EmbeddedH2DataSource(final String dbname, final int maxpoolsize) {
         super(
-            new EmbeddedDataSource(EmbeddedH2DataSource.MODE, dbname, maxpoolsize)
+            new EmbeddedDataSource(dbname, EmbeddedH2DataSource.MODE, maxpoolsize)
         );
     }
 }

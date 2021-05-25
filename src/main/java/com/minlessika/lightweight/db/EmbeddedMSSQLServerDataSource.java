@@ -49,7 +49,7 @@ public final class EmbeddedMSSQLServerDataSource extends DataSourceWrap {
      * @param dbname Database name
      */
     public EmbeddedMSSQLServerDataSource(final String dbname) {
-        this(dbname, EmbeddedDataSource.DEFAULT_MAXIMUM_POOL_SIZE);
+        this(dbname, EmbeddedDataSource.DEFAULT_MAX_POOL_SIZE);
     }
 
     /**
@@ -59,7 +59,7 @@ public final class EmbeddedMSSQLServerDataSource extends DataSourceWrap {
      */
     public EmbeddedMSSQLServerDataSource(final String dbname, final int maxpoolsize) {
         super(
-            new EmbeddedDataSource(EmbeddedMSSQLServerDataSource.MODE, dbname, maxpoolsize)
+            new EmbeddedDataSource(dbname, EmbeddedMSSQLServerDataSource.MODE, maxpoolsize)
         );
     }
 }

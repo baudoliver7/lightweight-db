@@ -49,7 +49,7 @@ public final class EmbeddedPostgreSQLDataSource extends DataSourceWrap {
      * @param dbname Database name
      */
     public EmbeddedPostgreSQLDataSource(final String dbname) {
-        this(dbname, EmbeddedDataSource.DEFAULT_MAXIMUM_POOL_SIZE);
+        this(dbname, EmbeddedDataSource.DEFAULT_MAX_POOL_SIZE);
     }
 
     /**
@@ -59,7 +59,7 @@ public final class EmbeddedPostgreSQLDataSource extends DataSourceWrap {
      */
     public EmbeddedPostgreSQLDataSource(final String dbname, final int maxpoolsize) {
         super(
-            new EmbeddedDataSource(EmbeddedPostgreSQLDataSource.MODE, dbname, maxpoolsize)
+            new EmbeddedDataSource(dbname, EmbeddedPostgreSQLDataSource.MODE, maxpoolsize)
         );
     }
 }

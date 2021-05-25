@@ -48,7 +48,7 @@ public final class EmbeddedDerbyDataSource extends DataSourceWrap {
      * @param dbname Database name
      */
     public EmbeddedDerbyDataSource(final String dbname) {
-        this(dbname, EmbeddedDataSource.DEFAULT_MAXIMUM_POOL_SIZE);
+        this(dbname, EmbeddedDataSource.DEFAULT_MAX_POOL_SIZE);
     }
 
     /**
@@ -58,7 +58,7 @@ public final class EmbeddedDerbyDataSource extends DataSourceWrap {
      */
     public EmbeddedDerbyDataSource(final String dbname, final int maxpoolsize) {
         super(
-            new EmbeddedDataSource(EmbeddedDerbyDataSource.MODE, dbname, maxpoolsize)
+            new EmbeddedDataSource(dbname, EmbeddedDerbyDataSource.MODE, maxpoolsize)
         );
     }
 }

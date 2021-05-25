@@ -48,7 +48,7 @@ public final class EmbeddedIgniteDataSource extends DataSourceWrap {
      * @param dbname Database name
      */
     public EmbeddedIgniteDataSource(final String dbname) {
-        this(dbname, EmbeddedDataSource.DEFAULT_MAXIMUM_POOL_SIZE);
+        this(dbname, EmbeddedDataSource.DEFAULT_MAX_POOL_SIZE);
     }
 
     /**
@@ -58,7 +58,7 @@ public final class EmbeddedIgniteDataSource extends DataSourceWrap {
      */
     public EmbeddedIgniteDataSource(final String dbname, final int maxpoolsize) {
         super(
-            new EmbeddedDataSource(EmbeddedIgniteDataSource.MODE, dbname, maxpoolsize)
+            new EmbeddedDataSource(dbname, EmbeddedIgniteDataSource.MODE, maxpoolsize)
         );
     }
 }
