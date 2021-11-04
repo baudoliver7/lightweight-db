@@ -26,16 +26,16 @@ package com.lightweight.db;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test cases for {@link RandomDatabaseName}.
  * @since 0.1
  */
-public final class RandomDatabaseNameTest {
+final class RandomDatabaseNameTest {
 
     @Test
-    public void nameMustMatchWithPattern() {
+    void nameMustMatchWithPattern() {
         final String name = new RandomDatabaseName().value();
         MatcherAssert.assertThat(
             name,
