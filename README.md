@@ -1,6 +1,8 @@
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
 
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/Minlessika/lightweight-db/blob/main/LICENSE.txt)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/baudoliver7/lightweight-db/blob/main/LICENSE.txt)
+
+[![codecov](https://codecov.io/gh/baudoliver7/lightweight-db/branch/master/graph/badge.svg?token=AlLqLoNAeF)](https://codecov.io/gh/baudoliver7/lightweight-db)
 
 ## What does it do ?
 Lightweight DB allows you to run PostgreSQL, Oracle, MySQL, MS SQL Server... databases for fast use purposes. It's very suitable for unit and integration Testing.
