@@ -22,24 +22,24 @@
  * SOFTWARE.
  */
 
-package com.minlessika.lightweight.db;
+package com.lightweight.db;
 
 /**
- * Embedded DB2 DataSource.
- * @see <a href="http://h2database.com/html/features.html?highlight=Derby%20Compatibility%20Mode&search=Derby%20Compatibility%20Mode#firstFound">H2 - PostgreSQL Compatibility Mode</a>
+ * Embedded HSQLDB DataSource.
+ * @see <a href="http://h2database.com/html/features.html?highlight=Oracle%20Compatibility%20Mode&search=Oracle%20Compatibility%20Mode#firstFound">H2 - PostgreSQL Compatibility Mode</a>
  * @since 0.1
  */
-public final class EmbeddedDerbyDataSource extends DataSourceWrap {
+public final class EmbeddedOracleDataSource extends DataSourceWrap {
 
     /**
      * Mode.
      */
-    private static final String MODE = "Derby";
+    private static final String MODE = "Oracle";
 
     /**
      * Ctor.
      */
-    public EmbeddedDerbyDataSource() {
+    public EmbeddedOracleDataSource() {
         this(new RandomDatabaseName().value());
     }
 
@@ -47,7 +47,7 @@ public final class EmbeddedDerbyDataSource extends DataSourceWrap {
      * Ctor.
      * @param dbname Database name
      */
-    public EmbeddedDerbyDataSource(final String dbname) {
+    public EmbeddedOracleDataSource(final String dbname) {
         this(dbname, EmbeddedDataSource.DEFAULT_MAX_POOL_SIZE);
     }
 
@@ -56,9 +56,9 @@ public final class EmbeddedDerbyDataSource extends DataSourceWrap {
      * @param dbname Database name
      * @param maxpoolsize Max pool size
      */
-    public EmbeddedDerbyDataSource(final String dbname, final int maxpoolsize) {
+    public EmbeddedOracleDataSource(final String dbname, final int maxpoolsize) {
         super(
-            new EmbeddedDataSource(dbname, EmbeddedDerbyDataSource.MODE, maxpoolsize)
+            new EmbeddedDataSource(dbname, EmbeddedOracleDataSource.MODE, maxpoolsize)
         );
     }
 }

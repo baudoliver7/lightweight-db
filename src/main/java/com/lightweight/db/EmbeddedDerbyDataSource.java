@@ -22,25 +22,24 @@
  * SOFTWARE.
  */
 
-package com.minlessika.lightweight.db;
+package com.lightweight.db;
 
 /**
- * Embedded HSQLDB DataSource.
- * @see <a href="http://h2database.com/html/features.html?highlight=MySQL%20Compatibility%20Mode&search=MySQL%20Compatibility%20Mode#firstFound">H2 - PostgreSQL Compatibility Mode</a>
+ * Embedded DB2 DataSource.
+ * @see <a href="http://h2database.com/html/features.html?highlight=Derby%20Compatibility%20Mode&search=Derby%20Compatibility%20Mode#firstFound">H2 - PostgreSQL Compatibility Mode</a>
  * @since 0.1
- * @checkstyle AbbreviationAsWordInNameCheck (100 lines)
  */
-public final class EmbeddedMySQLDataSource extends DataSourceWrap {
+public final class EmbeddedDerbyDataSource extends DataSourceWrap {
 
     /**
      * Mode.
      */
-    private static final String MODE = "MSSQLServer";
+    private static final String MODE = "Derby";
 
     /**
      * Ctor.
      */
-    public EmbeddedMySQLDataSource() {
+    public EmbeddedDerbyDataSource() {
         this(new RandomDatabaseName().value());
     }
 
@@ -48,7 +47,7 @@ public final class EmbeddedMySQLDataSource extends DataSourceWrap {
      * Ctor.
      * @param dbname Database name
      */
-    public EmbeddedMySQLDataSource(final String dbname) {
+    public EmbeddedDerbyDataSource(final String dbname) {
         this(dbname, EmbeddedDataSource.DEFAULT_MAX_POOL_SIZE);
     }
 
@@ -57,9 +56,9 @@ public final class EmbeddedMySQLDataSource extends DataSourceWrap {
      * @param dbname Database name
      * @param maxpoolsize Max pool size
      */
-    public EmbeddedMySQLDataSource(final String dbname, final int maxpoolsize) {
+    public EmbeddedDerbyDataSource(final String dbname, final int maxpoolsize) {
         super(
-            new EmbeddedDataSource(dbname, EmbeddedMySQLDataSource.MODE, maxpoolsize)
+            new EmbeddedDataSource(dbname, EmbeddedDerbyDataSource.MODE, maxpoolsize)
         );
     }
 }

@@ -22,9 +22,9 @@
  * SOFTWARE.
  */
 
-package com.minlessika.lightweight.db.tests;
+package com.lightweight.db;
 
-import com.minlessika.lightweight.db.RandomDatabaseName;
+import com.lightweight.db.RandomDatabaseName;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;

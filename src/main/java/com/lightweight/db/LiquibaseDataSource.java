@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.minlessika.lightweight.db;
+package com.lightweight.db;
 
 import java.sql.Connection;
 import java.sql.SQLException;

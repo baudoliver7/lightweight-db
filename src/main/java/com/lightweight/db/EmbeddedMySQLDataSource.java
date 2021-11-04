@@ -22,12 +22,44 @@
  * SOFTWARE.
  */
 
-/**
- * Lightweight Databases.
- *
- * @since 0.1
- * @author Olivier B. OURA (baudolivier.oura@minlessika.com)
- * @see <a href="https://github.com/Minlessika/lightweight-db">Github project</a>
- */
+package com.lightweight.db;
 
-package com.minlessika.lightweight.db;
+/**
+ * Embedded HSQLDB DataSource.
+ * @see <a href="http://h2database.com/html/features.html?highlight=MySQL%20Compatibility%20Mode&search=MySQL%20Compatibility%20Mode#firstFound">H2 - PostgreSQL Compatibility Mode</a>
+ * @since 0.1
+ * @checkstyle AbbreviationAsWordInNameCheck (100 lines)
+ */
+public final class EmbeddedMySQLDataSource extends DataSourceWrap {
+
+    /**
+     * Mode.
+     */
+    private static final String MODE = "MSSQLServer";
+
+    /**
+     * Ctor.
+     */
+    public EmbeddedMySQLDataSource() {
+        this(new RandomDatabaseName().value());
+    }
+
+    /**
+     * Ctor.
+     * @param dbname Database name
+     */
+    public EmbeddedMySQLDataSource(final String dbname) {
+        this(dbname, EmbeddedDataSource.DEFAULT_MAX_POOL_SIZE);
+    }
+
+    /**
+     * Ctor.
+     * @param dbname Database name
+     * @param maxpoolsize Max pool size
+     */
+    public EmbeddedMySQLDataSource(final String dbname, final int maxpoolsize) {
+        super(
+            new EmbeddedDataSource(dbname, EmbeddedMySQLDataSource.MODE, maxpoolsize)
+        );
+    }
+}

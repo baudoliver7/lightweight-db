@@ -22,25 +22,24 @@
  * SOFTWARE.
  */
 
-package com.minlessika.lightweight.db;
+package com.lightweight.db;
 
 /**
- * Embedded HSQLDB DataSource.
- * @see <a href="http://h2database.com/html/features.html?highlight=MS%20SQL%20Server%20Compatibility%20Mode&search=MS%20SQL%20Server%20Compatibility%20Mode#firstFound">H2 - PostgreSQL Compatibility Mode</a>
+ * Embedded DB2 DataSource.
+ * @see <a href="http://h2database.com/html/features.html?highlight=DB2%20Compatibility%20Mode&search=DB2%20Compatibility%20Mode#firstFound">H2 - PostgreSQL Compatibility Mode</a>
  * @since 0.1
- * @checkstyle AbbreviationAsWordInNameCheck (100 lines)
  */
-public final class EmbeddedMSSQLServerDataSource extends DataSourceWrap {
+public final class EmbeddedH2DataSource extends DataSourceWrap {
 
     /**
      * Mode.
      */
-    private static final String MODE = "MSSQLServer";
+    private static final String MODE = "H2";
 
     /**
      * Ctor.
      */
-    public EmbeddedMSSQLServerDataSource() {
+    public EmbeddedH2DataSource() {
         this(new RandomDatabaseName().value());
     }
 
@@ -48,7 +47,7 @@ public final class EmbeddedMSSQLServerDataSource extends DataSourceWrap {
      * Ctor.
      * @param dbname Database name
      */
-    public EmbeddedMSSQLServerDataSource(final String dbname) {
+    public EmbeddedH2DataSource(final String dbname) {
         this(dbname, EmbeddedDataSource.DEFAULT_MAX_POOL_SIZE);
     }
 
@@ -57,9 +56,9 @@ public final class EmbeddedMSSQLServerDataSource extends DataSourceWrap {
      * @param dbname Database name
      * @param maxpoolsize Max pool size
      */
-    public EmbeddedMSSQLServerDataSource(final String dbname, final int maxpoolsize) {
+    public EmbeddedH2DataSource(final String dbname, final int maxpoolsize) {
         super(
-            new EmbeddedDataSource(dbname, EmbeddedMSSQLServerDataSource.MODE, maxpoolsize)
+            new EmbeddedDataSource(dbname, EmbeddedH2DataSource.MODE, maxpoolsize)
         );
     }
 }
