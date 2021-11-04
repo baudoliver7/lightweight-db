@@ -64,13 +64,13 @@ If you're using Maven, you should add this to your <code>pom.xml</code> dependen
 <dependency>
     <groupId>com.h2database</groupId>
     <artifactId>h2</artifactId>
-    <version>1.4.200</version>
+    <version><!-- 1.4.200 or higher --></version>
     <scope>test</scope>
 </dependency>
 <dependency>
-    <groupId>com.minlessika.incubator</groupId>
+    <groupId>com.baudoliver7</groupId>
     <artifactId>lightweight-db</artifactId>
-    <version>0.1.0</version>
+    <version><!-- latest version --></version>
     <scope>test</scope>
 </dependency>
 ``` 
@@ -84,8 +84,8 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'com.h2database:h2:1.4.200'
-    testImplementation 'com.minlessika.incubator:lightweight-db:0.1.0'
+    testImplementation 'com.h2database:h2:/* 1.4.200 or higher */'
+    testImplementation 'com.minlessika.incubator:lightweight-db:/* latest version */'
 }
 ```
 
@@ -97,9 +97,9 @@ sending us your pull request please run full Maven build:
 
 > mvn clean install -Pqulice
 
-Keep in mind that JDK7 and Maven 3.1.0 are the lowest versions you may use.
+Keep in mind that JDK 8 and Maven 3.1.0 are the lowest versions you may use.
 
 ## Got questions ?
 
 If you have questions or general suggestions, don't hesitate to submit
-a new [Github issue](https://github.com/Minlessika/lightweight-db/issues/new).
+a new [Github issue](https://github.com/baudoliver7/lightweight-db/issues/new).
