@@ -22,43 +22,12 @@
  * SOFTWARE.
  */
 
-package com.minlessika.lightweight.db;
-
 /**
- * Embedded DB2 DataSource.
- * @see <a href="http://h2database.com/html/features.html?highlight=DB2%20Compatibility%20Mode&search=DB2%20Compatibility%20Mode#firstFound">H2 - PostgreSQL Compatibility Mode</a>
+ * Lightweight Databases.
+ *
  * @since 0.1
+ * @author Olivier B. OURA (baudolivier.oura@minlessika.com)
+ * @see <a href="https://github.com/Minlessika/lightweight-db">Github project</a>
  */
-public final class EmbeddedH2DataSource extends DataSourceWrap {
 
-    /**
-     * Mode.
-     */
-    private static final String MODE = "H2";
-
-    /**
-     * Ctor.
-     */
-    public EmbeddedH2DataSource() {
-        this(new RandomDatabaseName().value());
-    }
-
-    /**
-     * Ctor.
-     * @param dbname Database name
-     */
-    public EmbeddedH2DataSource(final String dbname) {
-        this(dbname, EmbeddedDataSource.DEFAULT_MAX_POOL_SIZE);
-    }
-
-    /**
-     * Ctor.
-     * @param dbname Database name
-     * @param maxpoolsize Max pool size
-     */
-    public EmbeddedH2DataSource(final String dbname, final int maxpoolsize) {
-        super(
-            new EmbeddedDataSource(dbname, EmbeddedH2DataSource.MODE, maxpoolsize)
-        );
-    }
-}
+package com.lightweight.db;

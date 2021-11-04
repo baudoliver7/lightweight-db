@@ -22,65 +22,44 @@
  * SOFTWARE.
  */
 
-package com.minlessika.lightweight.db;
+package com.lightweight.db;
 
 /**
- * Random database name.
+ * Embedded HSQLDB DataSource.
+ * @see <a href="http://h2database.com/html/features.html?highlight=HSQLDB%20Compatibility%20Mode&search=HSQLDB%20Compatibility%20Mode#firstFound">H2 - PostgreSQL Compatibility Mode</a>
  * @since 0.1
+ * @checkstyle AbbreviationAsWordInNameCheck (100 lines)
  */
-public final class RandomDatabaseName {
+public final class EmbeddedHSQLDBDataSource extends DataSourceWrap {
 
     /**
-     * Minimum of random interval.
+     * Mode.
      */
-    private static final int DEFAULT_MIN = 0;
-
-    /**
-     * Maximum of random interval.
-     */
-    private static final int DEFAULT_MAX = 1_000_000;
-
-    /**
-     * Minimum of random interval.
-     */
-    private final int min;
-
-    /**
-     * Maximum of random interval.
-     */
-    private final int max;
+    private static final String MODE = "HSQLDB";
 
     /**
      * Ctor.
-     * <p>Random interval.
      */
-    public RandomDatabaseName() {
-        this(
-            RandomDatabaseName.DEFAULT_MIN,
-            RandomDatabaseName.DEFAULT_MAX
-        );
+    public EmbeddedHSQLDBDataSource() {
+        this(new RandomDatabaseName().value());
     }
 
     /**
      * Ctor.
-     * @param min Minimum of random interval
-     * @param max Maximum of maximum interval
+     * @param dbname Database name
      */
-    public RandomDatabaseName(final int min, final int max) {
-        this.min = min;
-        this.max = max;
+    public EmbeddedHSQLDBDataSource(final String dbname) {
+        this(dbname, EmbeddedDataSource.DEFAULT_MAX_POOL_SIZE);
     }
 
     /**
-     * Value.
-     * @return Name
+     * Ctor.
+     * @param dbname Database name
+     * @param maxpoolsize Max pool size
      */
-    public String value() {
-        final int randomnumber = this.min + (int) (Math.random() * ((this.max - this.min) + 1));
-        return String.format(
-            "test_db%s_%s",
-            Thread.currentThread().getId(),
-            randomnumber
+    public EmbeddedHSQLDBDataSource(final String dbname, final int maxpoolsize) {
+        super(
+            new EmbeddedDataSource(dbname, EmbeddedHSQLDBDataSource.MODE, maxpoolsize)
         );
     }
 }

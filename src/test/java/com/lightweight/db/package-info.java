@@ -30,4 +30,4 @@
  * @see <a href="https://github.com/Minlessika/lightweight-db">Github project</a>
  */
 
-package com.minlessika.lightweight.db.tests;
+package com.lightweight.db;

@@ -22,25 +22,25 @@
  * SOFTWARE.
  */
 
-package com.minlessika.lightweight.db;
+package com.lightweight.db;
 
 /**
- * Embedded PostgreSQL DataSource.
- * @see <a href="http://h2database.com/html/features.html?highlight=PostgreSQL%20Compatibility%20Mode&search=PostgreSQL%20Compatibility%20Mode#firstFound">H2 - PostgreSQL Compatibility Mode</a>
+ * Embedded HSQLDB DataSource.
+ * @see <a href="http://h2database.com/html/features.html?highlight=MS%20SQL%20Server%20Compatibility%20Mode&search=MS%20SQL%20Server%20Compatibility%20Mode#firstFound">H2 - PostgreSQL Compatibility Mode</a>
  * @since 0.1
  * @checkstyle AbbreviationAsWordInNameCheck (100 lines)
  */
-public final class EmbeddedPostgreSQLDataSource extends DataSourceWrap {
+public final class EmbeddedMSSQLServerDataSource extends DataSourceWrap {
 
     /**
      * Mode.
      */
-    private static final String MODE = "PostgreSQL";
+    private static final String MODE = "MSSQLServer";
 
     /**
      * Ctor.
      */
-    public EmbeddedPostgreSQLDataSource() {
+    public EmbeddedMSSQLServerDataSource() {
         this(new RandomDatabaseName().value());
     }
 
@@ -48,7 +48,7 @@ public final class EmbeddedPostgreSQLDataSource extends DataSourceWrap {
      * Ctor.
      * @param dbname Database name
      */
-    public EmbeddedPostgreSQLDataSource(final String dbname) {
+    public EmbeddedMSSQLServerDataSource(final String dbname) {
         this(dbname, EmbeddedDataSource.DEFAULT_MAX_POOL_SIZE);
     }
 
@@ -57,9 +57,9 @@ public final class EmbeddedPostgreSQLDataSource extends DataSourceWrap {
      * @param dbname Database name
      * @param maxpoolsize Max pool size
      */
-    public EmbeddedPostgreSQLDataSource(final String dbname, final int maxpoolsize) {
+    public EmbeddedMSSQLServerDataSource(final String dbname, final int maxpoolsize) {
         super(
-            new EmbeddedDataSource(dbname, EmbeddedPostgreSQLDataSource.MODE, maxpoolsize)
+            new EmbeddedDataSource(dbname, EmbeddedMSSQLServerDataSource.MODE, maxpoolsize)
         );
     }
 }

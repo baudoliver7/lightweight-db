@@ -22,24 +22,25 @@
  * SOFTWARE.
  */
 
-package com.minlessika.lightweight.db;
+package com.lightweight.db;
 
 /**
- * Embedded HSQLDB DataSource.
- * @see <a href="http://h2database.com/html/features.html?highlight=Oracle%20Compatibility%20Mode&search=Oracle%20Compatibility%20Mode#firstFound">H2 - PostgreSQL Compatibility Mode</a>
+ * Embedded PostgreSQL DataSource.
+ * @see <a href="http://h2database.com/html/features.html?highlight=PostgreSQL%20Compatibility%20Mode&search=PostgreSQL%20Compatibility%20Mode#firstFound">H2 - PostgreSQL Compatibility Mode</a>
  * @since 0.1
+ * @checkstyle AbbreviationAsWordInNameCheck (100 lines)
  */
-public final class EmbeddedOracleDataSource extends DataSourceWrap {
+public final class EmbeddedPostgreSQLDataSource extends DataSourceWrap {
 
     /**
      * Mode.
      */
-    private static final String MODE = "Oracle";
+    private static final String MODE = "PostgreSQL";
 
     /**
      * Ctor.
      */
-    public EmbeddedOracleDataSource() {
+    public EmbeddedPostgreSQLDataSource() {
         this(new RandomDatabaseName().value());
     }
 
@@ -47,7 +48,7 @@ public final class EmbeddedOracleDataSource extends DataSourceWrap {
      * Ctor.
      * @param dbname Database name
      */
-    public EmbeddedOracleDataSource(final String dbname) {
+    public EmbeddedPostgreSQLDataSource(final String dbname) {
         this(dbname, EmbeddedDataSource.DEFAULT_MAX_POOL_SIZE);
     }
 
@@ -56,9 +57,9 @@ public final class EmbeddedOracleDataSource extends DataSourceWrap {
      * @param dbname Database name
      * @param maxpoolsize Max pool size
      */
-    public EmbeddedOracleDataSource(final String dbname, final int maxpoolsize) {
+    public EmbeddedPostgreSQLDataSource(final String dbname, final int maxpoolsize) {
         super(
-            new EmbeddedDataSource(dbname, EmbeddedOracleDataSource.MODE, maxpoolsize)
+            new EmbeddedDataSource(dbname, EmbeddedPostgreSQLDataSource.MODE, maxpoolsize)
         );
     }
 }

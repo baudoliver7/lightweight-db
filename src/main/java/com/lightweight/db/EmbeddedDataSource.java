@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.minlessika.lightweight.db;
+package com.lightweight.db;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -34,7 +34,7 @@ import javax.sql.DataSource;
 /**
  * Embedded PostgreSQL DataSource.
  * <p>It's based on H2 database features.
- * We use HikariCP for Connection Pooling.
+ * We use HikariCP for connection pooling.
  * @since 0.1
  * @checkstyle DesignForExtensionCheck (500 lines)
  */

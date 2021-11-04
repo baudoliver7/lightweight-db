@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.minlessika.lightweight.db;
+package com.lightweight.db;
 
 /**
  * Embedded HSQLDB DataSource.

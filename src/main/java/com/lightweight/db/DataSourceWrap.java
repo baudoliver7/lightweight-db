@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.minlessika.lightweight.db;
+package com.lightweight.db;
 
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -47,7 +47,7 @@ public abstract class DataSourceWrap implements DataSource {
      * Ctor.
      * @param origin Origin
      */
-    public DataSourceWrap(final DataSource origin) {
+    protected DataSourceWrap(final DataSource origin) {
         this.origin = origin;
     }
 
