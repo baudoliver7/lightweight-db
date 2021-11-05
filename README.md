@@ -2,6 +2,7 @@
 [![DevOps By Rultor.com](https://www.rultor.com/b/baudoliver7/lightweight-db)](https://www.rultor.com/p/baudoliver7/lightweight-db)
 [![We recommend IntelliJ IDEA](https://www.elegantobjects.org/intellij-idea.svg)](https://www.jetbrains.com/idea/)
 
+[![Javadoc](http://www.javadoc.io/badge/com.baudoliver7/lightweight-db.svg)](http://www.javadoc.io/doc/com.baudoliver7/lightweight-db)
 [![Maven Central](https://img.shields.io/maven-central/v/com.baudoliver7/lightweight-db.svg)](https://maven-badges.herokuapp.com/maven-central/com.baudoliver7/lightweight-db)
 [![PDD status](http://www.0pdd.com/svg?name=baudoliver7/lightweight-db)](http://www.0pdd.com/p?name=baudoliver7/lightweight-db)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/baudoliver7/lightweight-db/blob/main/LICENSE.txt)
