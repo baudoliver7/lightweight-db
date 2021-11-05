@@ -20,4 +20,4 @@ merge:
      mvn versions:set "-DnewVersion=${tag}"
      git commit -am "${tag}"
      mvn clean install -Dinvoker.skip
-     mvn clean deploy -Psonatype -Plightweight-db --errors --settings /home/r/settings.xml -Dstyle.color=never
+     mvn clean deploy -Psonatype -Pbaudoliver7 --errors --settings /home/r/settings.xml -Dstyle.color=never
