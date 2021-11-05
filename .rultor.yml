@@ -1,0 +1,23 @@
+assets:
+  settings.xml: baudoliver7/home#assets/settings.xml
+  public.key: baudoliver7/home#assets/public.key
+  private.key: baudoliver7/home#assets/private.key
+architect:
+  - baudoliver7
+install: |
+  sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
+  sudo gem install pdd
+  sudo gem install xcop
+  pdd --file=/dev/null
+merge:
+  fast-forward: only
+  rebase: true
+  script: |
+    mvn clean install -Pqulice --errors -Dstyle.color=never
+[[ "${tag}" =~ ^[0-9]+(\.[0-9]+)*$ ]] || exit -1
+     gpg --import /home/r/public.key
+     gpg --allow-secret-key-import --import --batch --pinentry-mode=loopback /home/r/private.key 
+     mvn versions:set "-DnewVersion=${tag}"
+     git commit -am "${tag}"
+     mvn clean install -Dinvoker.skip
+     mvn clean deploy -Psonatype -Plightweight-db --errors --settings /home/r/settings.xml -Dstyle.color=never
