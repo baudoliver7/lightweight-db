@@ -131,7 +131,7 @@ SOFTWARE.
         <artifactId>jacoco-maven-plugin</artifactId>
         <configuration>
           <output>file</output>
-          <outputDirectory>${project.build.directory}/coverage</outputDirectory>
+          <outputDirectory>${project.build.directory}/site/jacoco</outputDirectory>
         </configuration>
         <executions>
           <execution>
