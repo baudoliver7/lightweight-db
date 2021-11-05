@@ -1,4 +1,5 @@
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
+[![DevOps By Rultor.com](https://www.rultor.com/b/baudoliver7/lightweight-db)](https://www.rultor.com/p/baudoliver7/lightweight-db)
 [![We recommend IntelliJ IDEA](https://www.elegantobjects.org/intellij-idea.svg)](https://www.jetbrains.com/idea/)
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.baudoliver7/lightweight-db.svg)](https://maven-badges.herokuapp.com/maven-central/com.baudoliver7/lightweight-db)
