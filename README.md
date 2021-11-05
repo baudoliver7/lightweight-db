@@ -6,6 +6,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/baudoliver7/lightweight-db/blob/main/LICENSE.txt)
 
 [![codecov](https://codecov.io/gh/baudoliver7/lightweight-db/branch/master/graph/badge.svg?token=AlLqLoNAeF)](https://codecov.io/gh/baudoliver7/lightweight-db)
+[![Hits-of-Code](https://hitsofcode.com/github/baudoliver7/lightweight-db)](https://hitsofcode.com/github/baudoliver7/lightweight-db/view)
 
 ## What does it do ?
 Lightweight DB allows you to run PostgreSQL, Oracle, MySQL, MS SQL Server... databases for fast use purposes. It's very suitable for unit and integration Testing.
