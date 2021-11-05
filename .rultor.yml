@@ -14,10 +14,12 @@ merge:
   rebase: true
   script: |
     mvn clean install -Pqulice --errors -Dstyle.color=never
-[[ "${tag}" =~ ^[0-9]+(\.[0-9]+)*$ ]] || exit -1
-     gpg --import /home/r/public.key
-     gpg --allow-secret-key-import --import --batch --pinentry-mode=loopback /home/r/private.key 
-     mvn versions:set "-DnewVersion=${tag}"
-     git commit -am "${tag}"
-     mvn clean install -Dinvoker.skip
-     mvn clean deploy -Psonatype -Pbaudoliver7 --errors --settings /home/r/settings.xml -Dstyle.color=never
+release:
+  script: |-    
+    [[ "${tag}" =~ ^[0-9]+(\.[0-9]+)*$ ]] || exit -1
+    gpg --import /home/r/public.key
+    gpg --allow-secret-key-import --import --batch --pinentry-mode=loopback /home/r/private.key 
+    mvn versions:set "-DnewVersion=${tag}"
+    git commit -am "${tag}"
+    mvn clean install -Dinvoker.skip
+    mvn clean deploy -Psonatype -Pbaudoliver7 --errors --settings /home/r/settings.xml -Dstyle.color=never
