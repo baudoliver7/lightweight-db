@@ -72,7 +72,7 @@ If you're using Maven, you should add this to your <code>pom.xml</code> dependen
 <dependency>
     <groupId>com.h2database</groupId>
     <artifactId>h2</artifactId>
-    <version><!-- 1.4.200 or higher --></version>
+    <version><!-- 1.4.200 or above --></version>
     <scope>test</scope>
 </dependency>
 <dependency>
@@ -92,8 +92,8 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'com.h2database:h2:/* 1.4.200 or higher */'
-    testImplementation 'com.minlessika.incubator:lightweight-db:/* latest version */'
+    testImplementation 'com.h2database:h2:/* 1.4.200 or above */'
+    testImplementation 'com.baudoliver7:lightweight-db:/* latest version */'
 }
 ```
 
