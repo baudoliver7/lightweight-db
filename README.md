@@ -2,10 +2,12 @@
 [![DevOps By Rultor.com](https://www.rultor.com/b/baudoliver7/lightweight-db)](https://www.rultor.com/p/baudoliver7/lightweight-db)
 [![We recommend IntelliJ IDEA](https://www.elegantobjects.org/intellij-idea.svg)](https://www.jetbrains.com/idea/)
 
-[![Javadoc](http://www.javadoc.io/badge/com.baudoliver7/lightweight-db.svg)](http://www.javadoc.io/doc/com.baudoliver7/lightweight-db)
-[![Maven Central](https://img.shields.io/maven-central/v/com.baudoliver7/lightweight-db.svg)](https://maven-badges.herokuapp.com/maven-central/com.baudoliver7/lightweight-db)
-[![PDD status](http://www.0pdd.com/svg?name=baudoliver7/lightweight-db)](http://www.0pdd.com/p?name=baudoliver7/lightweight-db)
+[![PDD status](https://www.0pdd.com/svg?name=baudoliver7/lightweight-db)](https://www.0pdd.com/p?name=baudoliver7/lightweight-db)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/baudoliver7/lightweight-db/blob/main/LICENSE.txt)
+
+[![Java version supported ](https://img.shields.io/badge/java-v8%2B-blue)](https://img.shields.io/badge/java-v8%2B-blue)
+[![Javadoc](https://www.javadoc.io/badge/com.baudoliver7/lightweight-db.svg)](https://www.javadoc.io/doc/com.baudoliver7/lightweight-db)
+[![Maven Central](https://img.shields.io/maven-central/v/com.baudoliver7/lightweight-db.svg)](https://maven-badges.herokuapp.com/maven-central/com.baudoliver7/lightweight-db)
 
 [![codecov](https://codecov.io/gh/baudoliver7/lightweight-db/branch/master/graph/badge.svg?token=AlLqLoNAeF)](https://codecov.io/gh/baudoliver7/lightweight-db)
 [![Hits-of-Code](https://hitsofcode.com/github/baudoliver7/lightweight-db)](https://hitsofcode.com/github/baudoliver7/lightweight-db/view)
