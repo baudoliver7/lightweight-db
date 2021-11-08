@@ -5,7 +5,7 @@
 [![PDD status](https://www.0pdd.com/svg?name=baudoliver7/lightweight-db)](https://www.0pdd.com/p?name=baudoliver7/lightweight-db)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/baudoliver7/lightweight-db/blob/main/LICENSE.txt)
 
-[![Java version supported ](https://img.shields.io/badge/java-v8%2B-blue)](https://img.shields.io/badge/java-v8%2B-blue)
+[![Java version supported ](https://img.shields.io/badge/java-v8%2B-blue)](http://java.oracle.com)
 [![Javadoc](https://www.javadoc.io/badge/com.baudoliver7/lightweight-db.svg)](https://www.javadoc.io/doc/com.baudoliver7/lightweight-db)
 [![Maven Central](https://img.shields.io/maven-central/v/com.baudoliver7/lightweight-db.svg)](https://maven-badges.herokuapp.com/maven-central/com.baudoliver7/lightweight-db)
 
