@@ -31,7 +31,7 @@ SOFTWARE.
   </parent>
   <groupId>com.baudoliver7</groupId>
   <artifactId>lightweight-db</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.4</version>
   <name>Lightweight DB</name>
   <description>Databases for fast uses in Java</description>
   <url>https://github.com/baudoliver7/lightweight-db</url>
