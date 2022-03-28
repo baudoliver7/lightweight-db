@@ -30,102 +30,81 @@ import javax.sql.DataSource;
 import liquibase.Liquibase;
 import liquibase.database.DatabaseFactory;
 import liquibase.database.jvm.JdbcConnection;
-import liquibase.exception.LiquibaseException;
 import liquibase.resource.ClassLoaderResourceAccessor;
 
 /**
- * DataSource upgraded with liquibase.
+ * Data source that upgrades automatically database with liquibase.
+ *
  * @since 0.1
  */
 public final class LiquibaseDataSource extends DataSourceWrap {
 
     /**
-     * Change Log relative path.
-     */
-    private final String chglogpath;
-
-    /**
-     * If it has been initialized.
-     */
-    private volatile boolean initialized;
-
-    /**
      * Ctor.
+     * <p>We run immediately the script.</p>
      * @param origin Origin
-     * @param chglogpath Change log relative path
-     */
-    public LiquibaseDataSource(final DataSource origin, final String chglogpath) {
-        super(origin);
-        this.chglogpath = chglogpath;
-    }
-
-    @Override
-    public Connection getConnection() throws SQLException {
-        this.tryToInitialize();
-        return super.getConnection();
-    }
-
-    @Override
-    public Connection getConnection(
-        final String username,
-        final String password
-    ) throws SQLException {
-        this.tryToInitialize();
-        return super.getConnection(username, password);
-    }
-
-    /**
-     * Try to initialize.
+     * @param chgpath Change log path relative to resource accessor
      * @throws SQLException If fails
      */
-    private void tryToInitialize() throws SQLException {
-        if (!this.initialized) {
-            synchronized (LiquibaseDataSource.class) {
-                if (!this.initialized) {
-                    try (
-                        Connection connection = super.getConnection()
-                    ) {
-                        final liquibase.database.Database database =
-                            DatabaseFactory.getInstance()
-                                .findCorrectDatabaseImplementation(
-                                    new JdbcConnection(connection)
-                                );
-                        final Liquibase liquibase =
-                            new Liquibase(
-                                this.chglogpath,
-                                new ClassLoaderResourceAccessor(),
-                                database
-                            );
-                        liquibase.update("");
-                    } catch (final SQLException ex) {
-                        throw new SQLException(
-                            String.format(
-                                "Error while getting database connexion (liquibase database %s).",
-                                this.chglogpath
-                            ),
-                            ex
-                        );
-                    } catch (final liquibase.exception.DatabaseException ex) {
-                        throw new SQLException(
-                            String.format(
-                                "Error while getting liquibase instance (changelog : %s).",
-                                this.chglogpath
-                            ),
-                            ex
-                        );
-                    } catch (final LiquibaseException ex) {
-                        throw new SQLException(
-                            String.format(
-                                "Error while loading liquibase changelog (%s).",
-                                this.chglogpath
-                            ),
-                            ex
-                        );
-                    } finally {
-                        this.initialized = true;
-                    }
-                }
+    public LiquibaseDataSource(
+        final DataSource origin, final String chgpath
+    ) throws SQLException {
+        super(LiquibaseDataSource.upgrade(origin, chgpath));
+    }
+
+    /**
+     * Upgrades database.
+     * @param src Data source
+     * @param chgpath Change log path
+     * @return Data source upgraded
+     * @throws SQLException If fails
+     */
+    @SuppressWarnings("PMD.AvoidCatchingGenericException")
+    private static DataSource upgrade(
+        final DataSource src, final String chgpath
+    ) throws SQLException {
+        Connection connection = null;
+        try {
+            connection = src.getConnection();
+            connection.setAutoCommit(false);
+            final liquibase.database.Database database =
+                DatabaseFactory.getInstance()
+                    .findCorrectDatabaseImplementation(
+                        new JdbcConnection(connection)
+                    );
+            try {
+                final ClassLoaderResourceAccessor acc = new ClassLoaderResourceAccessor();
+                new Liquibase(chgpath, acc, database).update("");
+                acc.close();
+            // @checkstyle MethodBodyCommentsCheck (1 line)
+            // @checkstyle IllegalCatchCheck (1 line)
+            } catch (final Exception exe) {
+                throw new IllegalStateException(exe);
+            }
+            connection.commit();
+        } catch (final SQLException ex) {
+            connection.rollback();
+            throw new SQLException(
+                String.format(
+                    "Error while getting database connexion (liquibase database %s).",
+                    chgpath
+                ),
+                ex
+            );
+        } catch (final liquibase.exception.DatabaseException ex) {
+            connection.rollback();
+            throw new SQLException(
+                String.format(
+                    "Error while getting liquibase instance (changelog : %s).",
+                    chgpath
+                ),
+                ex
+            );
+        } finally {
+            if (connection != null) {
+                connection.close();
             }
         }
+        return src;
     }
 }
