@@ -34,11 +34,6 @@ import com.baudoliver7.jdbc.toolset.wrapper.DataSourceWrap;
 public final class EmbeddedDerbyDataSource extends DataSourceWrap {
 
     /**
-     * Mode.
-     */
-    private static final String MODE = "Derby";
-
-    /**
      * Ctor.
      */
     public EmbeddedDerbyDataSource() {
@@ -50,17 +45,10 @@ public final class EmbeddedDerbyDataSource extends DataSourceWrap {
      * @param dbname Database name
      */
     public EmbeddedDerbyDataSource(final String dbname) {
-        this(dbname, EmbeddedDataSource.DEFAULT_MAX_POOL_SIZE);
-    }
-
-    /**
-     * Ctor.
-     * @param dbname Database name
-     * @param maxpoolsize Max pool size
-     */
-    public EmbeddedDerbyDataSource(final String dbname, final int maxpoolsize) {
         super(
-            new EmbeddedDataSource(dbname, EmbeddedDerbyDataSource.MODE, maxpoolsize)
+            new EmbeddedDataSource(
+                String.format("jdbc:h2:~/%s;MODE=Derby;DEFAULT_NULL_ORDERING=HIGH", dbname)
+            )
         );
     }
 }

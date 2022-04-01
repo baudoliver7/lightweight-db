@@ -25,12 +25,11 @@
 package com.lightweight.db;
 
 import com.baudoliver7.jdbc.toolset.wrapper.DataSourceWrap;
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.sql.DataSource;
+import org.h2.jdbcx.JdbcDataSource;
 
 /**
  * Embedded PostgreSQL DataSource.
@@ -42,30 +41,16 @@ import javax.sql.DataSource;
 public final class EmbeddedDataSource extends DataSourceWrap {
 
     /**
-     * Default maximum pool size.
-     */
-    @SuppressWarnings("PMD.LongVariable")
-    public static final int DEFAULT_MAX_POOL_SIZE = 2;
-
-    /**
-     * Mode.
-     */
-    private final String mode;
-
-    /**
      * If it has been initialized.
      */
     private volatile boolean initialized;
 
     /**
      * Ctor.
-     * @param dbname Database name
-     * @param mode Mode
-     * @param maxpoolsize Max pool size
+     * @param url Url
      */
-    public EmbeddedDataSource(final String dbname, final String mode, final int maxpoolsize) {
-        super(makeDataSource(dbname, mode, maxpoolsize));
-        this.mode = mode;
+    public EmbeddedDataSource(final String url) {
+        super(makeDataSource(url));
     }
 
     @Override
@@ -76,16 +61,10 @@ public final class EmbeddedDataSource extends DataSourceWrap {
 
     @Override
     public Connection getConnection(
-        final String username,
-        final String password
+        final String username, final String password
     ) throws SQLException {
         this.tryToInitialize();
         return super.getConnection(username, password);
-    }
-
-    @Override
-    public String toString() {
-        return String.format("Embedded %s database.", this.mode);
     }
 
     /**
@@ -112,26 +91,12 @@ public final class EmbeddedDataSource extends DataSourceWrap {
 
     /**
      * Make data source.
-     * @param dbname Database name
-     * @param mode Mode
-     * @param maxpoolsize Max pool size
+     * @param url Url
      * @return Data source
      */
-    private static DataSource makeDataSource(
-        final String dbname,
-        final String mode,
-        final int maxpoolsize
-    ) {
-        final HikariConfig configdb = new HikariConfig();
-        configdb.setJdbcUrl(
-            String.format(
-                "jdbc:h2:~/%s;MODE=%s;DATABASE_TO_LOWER=TRUE",
-                dbname,
-                mode
-            )
-        );
-        configdb.setDriverClassName("org.h2.Driver");
-        configdb.setMaximumPoolSize(maxpoolsize);
-        return new HikariDataSource(configdb);
+    private static DataSource makeDataSource(final String url) {
+        final JdbcDataSource src = new JdbcDataSource();
+        src.setUrl(url);
+        return src;
     }
 }

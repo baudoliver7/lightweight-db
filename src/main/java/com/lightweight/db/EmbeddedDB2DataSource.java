@@ -35,11 +35,6 @@ import com.baudoliver7.jdbc.toolset.wrapper.DataSourceWrap;
 public final class EmbeddedDB2DataSource extends DataSourceWrap {
 
     /**
-     * Mode.
-     */
-    private static final String MODE = "DB2";
-
-    /**
      * Ctor.
      */
     public EmbeddedDB2DataSource() {
@@ -51,17 +46,10 @@ public final class EmbeddedDB2DataSource extends DataSourceWrap {
      * @param dbname Database name
      */
     public EmbeddedDB2DataSource(final String dbname) {
-        this(dbname, EmbeddedDataSource.DEFAULT_MAX_POOL_SIZE);
-    }
-
-    /**
-     * Ctor.
-     * @param dbname Database name
-     * @param maxpoolsize Max pool size
-     */
-    public EmbeddedDB2DataSource(final String dbname, final int maxpoolsize) {
         super(
-            new EmbeddedDataSource(dbname, EmbeddedDB2DataSource.MODE, maxpoolsize)
+            new EmbeddedDataSource(
+                String.format("jdbc:h2:~/%s;MODE=DB2;DEFAULT_NULL_ORDERING=HIGH", dbname)
+            )
         );
     }
 }

@@ -34,11 +34,6 @@ import com.baudoliver7.jdbc.toolset.wrapper.DataSourceWrap;
 public final class EmbeddedOracleDataSource extends DataSourceWrap {
 
     /**
-     * Mode.
-     */
-    private static final String MODE = "Oracle";
-
-    /**
      * Ctor.
      */
     public EmbeddedOracleDataSource() {
@@ -50,17 +45,12 @@ public final class EmbeddedOracleDataSource extends DataSourceWrap {
      * @param dbname Database name
      */
     public EmbeddedOracleDataSource(final String dbname) {
-        this(dbname, EmbeddedDataSource.DEFAULT_MAX_POOL_SIZE);
-    }
-
-    /**
-     * Ctor.
-     * @param dbname Database name
-     * @param maxpoolsize Max pool size
-     */
-    public EmbeddedOracleDataSource(final String dbname, final int maxpoolsize) {
         super(
-            new EmbeddedDataSource(dbname, EmbeddedOracleDataSource.MODE, maxpoolsize)
+            new EmbeddedDataSource(
+                String.format(
+                    "jdbc:h2:~/%s;MODE=Oracle;DEFAULT_NULL_ORDERING=HIGH", dbname
+                )
+            )
         );
     }
 }
