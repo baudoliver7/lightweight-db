@@ -35,11 +35,6 @@ import com.baudoliver7.jdbc.toolset.wrapper.DataSourceWrap;
 public final class EmbeddedPostgreSQLDataSource extends DataSourceWrap {
 
     /**
-     * Mode.
-     */
-    private static final String MODE = "PostgreSQL";
-
-    /**
      * Ctor.
      */
     public EmbeddedPostgreSQLDataSource() {
@@ -51,17 +46,14 @@ public final class EmbeddedPostgreSQLDataSource extends DataSourceWrap {
      * @param dbname Database name
      */
     public EmbeddedPostgreSQLDataSource(final String dbname) {
-        this(dbname, EmbeddedDataSource.DEFAULT_MAX_POOL_SIZE);
-    }
-
-    /**
-     * Ctor.
-     * @param dbname Database name
-     * @param maxpoolsize Max pool size
-     */
-    public EmbeddedPostgreSQLDataSource(final String dbname, final int maxpoolsize) {
         super(
-            new EmbeddedDataSource(dbname, EmbeddedPostgreSQLDataSource.MODE, maxpoolsize)
+            new EmbeddedDataSource(
+                String.format(
+                    // @checkstyle LineLengthCheck (1 line)
+                    "jdbc:h2:~/%s;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH",
+                    dbname
+                )
+            )
         );
     }
 }

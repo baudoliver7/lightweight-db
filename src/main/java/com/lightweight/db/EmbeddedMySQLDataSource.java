@@ -35,11 +35,6 @@ import com.baudoliver7.jdbc.toolset.wrapper.DataSourceWrap;
 public final class EmbeddedMySQLDataSource extends DataSourceWrap {
 
     /**
-     * Mode.
-     */
-    private static final String MODE = "MSSQLServer";
-
-    /**
      * Ctor.
      */
     public EmbeddedMySQLDataSource() {
@@ -51,17 +46,14 @@ public final class EmbeddedMySQLDataSource extends DataSourceWrap {
      * @param dbname Database name
      */
     public EmbeddedMySQLDataSource(final String dbname) {
-        this(dbname, EmbeddedDataSource.DEFAULT_MAX_POOL_SIZE);
-    }
-
-    /**
-     * Ctor.
-     * @param dbname Database name
-     * @param maxpoolsize Max pool size
-     */
-    public EmbeddedMySQLDataSource(final String dbname, final int maxpoolsize) {
         super(
-            new EmbeddedDataSource(dbname, EmbeddedMySQLDataSource.MODE, maxpoolsize)
+            new EmbeddedDataSource(
+                String.format(
+                    // @checkstyle LineLengthCheck (1 line)
+                    "jdbc:h2:~/%s;MODE=MySQL;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE",
+                    dbname
+                )
+            )
         );
     }
 }

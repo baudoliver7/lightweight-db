@@ -34,11 +34,6 @@ import com.baudoliver7.jdbc.toolset.wrapper.DataSourceWrap;
 public final class EmbeddedH2DataSource extends DataSourceWrap {
 
     /**
-     * Mode.
-     */
-    private static final String MODE = "H2";
-
-    /**
      * Ctor.
      */
     public EmbeddedH2DataSource() {
@@ -50,17 +45,10 @@ public final class EmbeddedH2DataSource extends DataSourceWrap {
      * @param dbname Database name
      */
     public EmbeddedH2DataSource(final String dbname) {
-        this(dbname, EmbeddedDataSource.DEFAULT_MAX_POOL_SIZE);
-    }
-
-    /**
-     * Ctor.
-     * @param dbname Database name
-     * @param maxpoolsize Max pool size
-     */
-    public EmbeddedH2DataSource(final String dbname, final int maxpoolsize) {
         super(
-            new EmbeddedDataSource(dbname, EmbeddedH2DataSource.MODE, maxpoolsize)
+            new EmbeddedDataSource(
+                String.format("jdbc:h2:~/%s", dbname)
+            )
         );
     }
 }
