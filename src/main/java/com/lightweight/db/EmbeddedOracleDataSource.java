@@ -24,6 +24,8 @@
 
 package com.lightweight.db;
 
+import com.baudoliver7.jdbc.toolset.wrapper.DataSourceWrap;
+
 /**
  * Embedded HSQLDB DataSource.
  * @see <a href="http://h2database.com/html/features.html?highlight=Oracle%20Compatibility%20Mode&search=Oracle%20Compatibility%20Mode#firstFound">H2 - PostgreSQL Compatibility Mode</a>
