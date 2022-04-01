@@ -49,8 +49,7 @@ public final class EmbeddedPostgreSQLDataSource extends DataSourceWrap {
         super(
             new EmbeddedDataSource(
                 String.format(
-                    // @checkstyle LineLengthCheck (1 line)
-                    "jdbc:h2:~/%s;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH",
+                    "jdbc:h2:~/%s;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE",
                     dbname
                 )
             )

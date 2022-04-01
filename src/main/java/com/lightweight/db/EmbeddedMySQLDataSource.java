@@ -49,8 +49,7 @@ public final class EmbeddedMySQLDataSource extends DataSourceWrap {
         super(
             new EmbeddedDataSource(
                 String.format(
-                    // @checkstyle LineLengthCheck (1 line)
-                    "jdbc:h2:~/%s;MODE=MySQL;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE",
+                    "jdbc:h2:~/%s;MODE=MySQL",
                     dbname
                 )
             )

@@ -47,7 +47,7 @@ public final class EmbeddedDerbyDataSource extends DataSourceWrap {
     public EmbeddedDerbyDataSource(final String dbname) {
         super(
             new EmbeddedDataSource(
-                String.format("jdbc:h2:~/%s;MODE=Derby;DEFAULT_NULL_ORDERING=HIGH", dbname)
+                String.format("jdbc:h2:~/%s;MODE=Derby", dbname)
             )
         );
     }

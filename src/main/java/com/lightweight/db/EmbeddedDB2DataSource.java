@@ -48,7 +48,7 @@ public final class EmbeddedDB2DataSource extends DataSourceWrap {
     public EmbeddedDB2DataSource(final String dbname) {
         super(
             new EmbeddedDataSource(
-                String.format("jdbc:h2:~/%s;MODE=DB2;DEFAULT_NULL_ORDERING=HIGH", dbname)
+                String.format("jdbc:h2:~/%s;MODE=DB2", dbname)
             )
         );
     }

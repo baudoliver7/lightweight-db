@@ -97,6 +97,8 @@ public final class EmbeddedDataSource extends DataSourceWrap {
     private static DataSource makeDataSource(final String url) {
         final JdbcDataSource src = new JdbcDataSource();
         src.setUrl(url);
+        src.setUser("sa");
+        src.setPassword("");
         return src;
     }
 }

@@ -48,7 +48,7 @@ public final class EmbeddedOracleDataSource extends DataSourceWrap {
         super(
             new EmbeddedDataSource(
                 String.format(
-                    "jdbc:h2:~/%s;MODE=Oracle;DEFAULT_NULL_ORDERING=HIGH", dbname
+                    "jdbc:h2:~/%s;MODE=Oracle;DATABASE_TO_LOWER=TRUE", dbname
                 )
             )
         );

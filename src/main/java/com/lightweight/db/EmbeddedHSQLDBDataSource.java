@@ -48,7 +48,7 @@ public final class EmbeddedHSQLDBDataSource extends DataSourceWrap {
     public EmbeddedHSQLDBDataSource(final String dbname) {
         super(
             new EmbeddedDataSource(
-                String.format("jdbc:h2:~/%s;MODE=HSQLDB;DEFAULT_NULL_ORDERING=FIRST", dbname)
+                String.format("jdbc:h2:~/%s;MODE=HSQLDB", dbname)
             )
         );
     }
