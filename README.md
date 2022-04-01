@@ -24,7 +24,6 @@ All currently supported databases are :
 * DB2
 * Derby
 * HSQLDB
-* Ignite
 * H2
 
 ## How does it work ?
