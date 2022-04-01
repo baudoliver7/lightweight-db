@@ -67,6 +67,18 @@ final DataSource source =
     );
 ``` 
 
+Simply import [Easy-liquibase4j](https://github.com/baudoliver7/easy-liquibase4j) to achieve that
+(with Maven by example):
+
+```xml
+<dependency>
+    <groupId>com.baudoliver7</groupId>
+    <artifactId>easy-liquibase4j</artifactId>
+    <version><!-- latest version --></version>
+    <scope>test</scope>
+</dependency>
+``` 
+
 ## Using with Maven
 If you're using Maven, you should add this to your <code>pom.xml</code> dependencies:
 
