@@ -24,6 +24,7 @@
 
 package com.lightweight.db;
 
+import com.baudoliver7.jdbc.toolset.wrapper.DataSourceWrap;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import java.sql.Connection;
